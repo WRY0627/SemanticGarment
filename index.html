@@ -4,11 +4,14 @@
   <meta charset="utf-8">
   <title>SemanticGarment</title>
 
+  <!-- 关键：让移动端按设备宽度渲染，避免只占半屏 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- （可选但建议）补回 GA 的外部脚本，避免 gtag 报错 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag() {
-      dataLayer.push(arguments);
-    }
+    function gtag(){ dataLayer.push(arguments); }
     gtag('js', new Date());
     gtag('config', 'G-PYVRSFMDRL');
   </script>
@@ -16,6 +19,8 @@
   <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
   <link rel="stylesheet" href="./static/css/bulma.min.css">
   <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <!-- 你之前去掉了 bulma-slider 的 CSS，这里一般也要配套保留 -->
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
   <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
   <link rel="stylesheet" href="./static/css/index.css">
@@ -27,28 +32,41 @@
   <script src="./static/js/bulma-slider.min.js"></script>
   <script src="./static/js/index.js"></script>
 </head>
-  
-<body>
-<nav class="navbar" role="navigation" aria-label="main navigation">
-  <div class="navbar-brand">
-    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-    </a>
-  </div>
-</nav>
 
+<body>
+  <nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+    </div>
+
+    <!-- 关键：保留一个 .navbar-menu，这样导航能占据整行布局 -->
+    <div class="navbar-menu">
+      <div class="navbar-start" style="flex-grow:1; justify-content:center;">
+        <a class="navbar-item" href="#">Home</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- 可删：只是为了让你直观看到全宽区域 -->
+  <section class="hero is-light">
+    <div class="hero-body">
+      <p class="title">SemanticGarment</p>
+      <p class="subtitle">This section should span full width on mobile now.</p>
+    </div>
+  </section>
+</body>
+</html>
 <section class="hero">
   <div class="hero-body">
     <div class="container is-max-desktop">
       <div class="columns is-centered">
         <div class="column has-text-centered">
           <h1 class="title is-1 publication-title">SemanticGarment: Semantic-Controlled Generation and Editing of 3D Gaussian Garments</h1>
-          <div class="is-size-5 publication-authors">
-            <span class="author-block">SJTU,</span>
-          </div>
-
+      
           <div class="column has-text-centered">
             <div class="publication-links">
               <!-- PDF Link. -->
