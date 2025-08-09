@@ -2,29 +2,37 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>SemanticGarment</title>
-
-  <!-- 关键：让移动端按设备宽度渲染，避免只占半屏 -->
+  <meta name="description"
+        content="Deformable Neural Radiance Fields creates free-viewpoint portraits (nerfies) from casually captured videos.">
+  <meta name="keywords" content="Nerfies, D-NeRF, NeRF">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Nerfies: Deformable Neural Radiance Fields</title>
 
-  <!-- （可选但建议）补回 GA 的外部脚本，避免 gtag 报错 -->
+  <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(){ dataLayer.push(arguments); }
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
     gtag('js', new Date());
+
     gtag('config', 'G-PYVRSFMDRL');
   </script>
 
-  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
   <link rel="stylesheet" href="./static/css/bulma.min.css">
   <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
-  <!-- 你之前去掉了 bulma-slider 的 CSS，这里一般也要配套保留 -->
   <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
   <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
   <link rel="stylesheet" href="./static/css/index.css">
-  <link rel="icon" href="./static/images/favicon.png">
+  <link rel="icon" href="./static/images/favicon.svg">
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script defer src="./static/js/fontawesome.all.min.js"></script>
@@ -32,24 +40,47 @@
   <script src="./static/js/bulma-slider.min.js"></script>
   <script src="./static/js/index.js"></script>
 </head>
-
 <body>
-  <nav class="navbar" role="navigation" aria-label="main navigation">
-    <div class="navbar-brand">
-      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
-        <span aria-hidden="true"></span>
-        <span aria-hidden="true"></span>
-        <span aria-hidden="true"></span>
-      </a>
-    </div>
 
-    <!-- 关键：保留一个 .navbar-menu，这样导航能占据整行布局 -->
-    <div class="navbar-menu">
-      <div class="navbar-start" style="flex-grow:1; justify-content:center;">
-        <a class="navbar-item" href="#">Home</a>
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <div class="navbar-menu">
+    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+      <a class="navbar-item" href="https://keunhong.com">
+      <span class="icon">
+          <i class="fas fa-home"></i>
+      </span>
+      </a>
+
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          More Research
+        </a>
+        <div class="navbar-dropdown">
+          <a class="navbar-item" href="https://hypernerf.github.io">
+            HyperNeRF
+          </a>
+          <a class="navbar-item" href="https://nerfies.github.io">
+            Nerfies
+          </a>
+          <a class="navbar-item" href="https://latentfusion.github.io">
+            LatentFusion
+          </a>
+          <a class="navbar-item" href="https://photoshape.github.io">
+            PhotoShape
+          </a>
+        </div>
       </div>
     </div>
-  </nav>
+
+  </div>
+</nav>
 
 
 <section class="hero">
@@ -57,13 +88,39 @@
     <div class="container is-max-desktop">
       <div class="columns is-centered">
         <div class="column has-text-centered">
-          <h1 class="title is-1 publication-title">SemanticGarment: Semantic-Controlled Generation and Editing of 3D Gaussian Garments</h1>
-      
+          <h1 class="title is-1 publication-title">Nerfies: Deformable Neural Radiance Fields</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://keunhong.com">Keunhong Park</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="https://utkarshsinha.com">Utkarsh Sinha</a><sup>2</sup>,</span>
+            <span class="author-block">
+              <a href="https://jonbarron.info">Jonathan T. Barron</a><sup>2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="http://sofienbouaziz.com">Sofien Bouaziz</a><sup>2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://www.danbgoldman.com">Dan B Goldman</a><sup>2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://homes.cs.washington.edu/~seitz/">Steven M. Seitz</a><sup>1,2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="http://www.ricardomartinbrualla.com">Ricardo Martin-Brualla</a><sup>2</sup>
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>University of Washington,</span>
+            <span class="author-block"><sup>2</sup>Google Research</span>
+          </div>
+
           <div class="column has-text-centered">
             <div class="publication-links">
               <!-- PDF Link. -->
               <span class="link-block">
-                <a href=" "
+                <a href="https://arxiv.org/pdf/2011.12948"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="fas fa-file-pdf"></i>
@@ -79,6 +136,36 @@
                   </span>
                   <span>arXiv</span>
                 </a>
+              </span>
+              <!-- Video Link. -->
+              <span class="link-block">
+                <a href="https://www.youtube.com/watch?v=MrKrnHhk8IA"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>Video</span>
+                </a>
+              </span>
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/google/nerfies"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+              <!-- Dataset Link. -->
+              <span class="link-block">
+                <a href="https://github.com/google/nerfies/releases/tag/0.1"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="far fa-images"></i>
+                  </span>
+                  <span>Data</span>
+                  </a>
             </div>
 
           </div>
@@ -87,613 +174,128 @@
     </div>
   </div>
 </section>
-  
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <video id="teaser" autoplay muted loop playsinline height="100%">
+        <source src="./static/videos/teaser.mp4"
+                type="video/mp4">
+      </video>
+      <h2 class="subtitle has-text-centered">
+        <span class="dnerf">Nerfies</span> turns selfie videos from your phone into
+        free-viewpoint
+        portraits.
+      </h2>
+    </div>
+  </div>
+</section>
+
+
+<section class="hero is-light is-small">
+  <div class="hero-body">
+    <div class="container">
+      <div id="results-carousel" class="carousel results-carousel">
+        <div class="item item-steve">
+          <video poster="" id="steve" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/steve.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-chair-tp">
+          <video poster="" id="chair-tp" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/chair-tp.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-shiba">
+          <video poster="" id="shiba" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/shiba.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-fullbody">
+          <video poster="" id="fullbody" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/fullbody.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-blueshirt">
+          <video poster="" id="blueshirt" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/blueshirt.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-mask">
+          <video poster="" id="mask" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/mask.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-coffee">
+          <video poster="" id="coffee" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/coffee.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-toby">
+          <video poster="" id="toby" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/toby2.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
 <section class="section">
   <div class="container is-max-desktop">
-    <!-- Pipeline. -->
+    <!-- Abstract. -->
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
-        <h2 class="title is-2">Pipeline</h2> <!-- 标题从 is-3 调成 is-2 -->
-        <div class="content has-text-justified" style="font-size: 1.25rem;"> <!-- 字体变大 -->
-          <!-- SVG -->
-          <div class="has-text-centered" style="margin-bottom: 1.5rem;">
-            <img src="./static/images/pipeline_v4.png" alt="Pipeline SVG" style="max-width: 100%; height: auto;">
-          </div>
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
           <p>
-            We introduce a core 3D semantic clothing model to enhance controllability in clothing generation, editing, and optimization. (a) Given a text or image prompt, our proposed generation approach leverages the semantic clothing model and an interpolated densification strategy to initialize 3DGS for different clothing types, while leveraging bimodal pretrained 2D diffusion models to refine geometric and texture details. (b) Semantic-based editing can prune and densify the Gaussians according to user requirements, while applying SDS supervision to enhance details. (c) Self-occlusion optimization leverages semantic information to address the self-occlusion problem. 
+            We present the first method capable of photorealistically reconstructing a non-rigidly
+            deforming scene using photos/videos captured casually from mobile phones.
+          </p>
+          <p>
+            Our approach augments neural radiance fields
+            (NeRF) by optimizing an
+            additional continuous volumetric deformation field that warps each observed point into a
+            canonical 5D NeRF.
+            We observe that these NeRF-like deformation fields are prone to local minima, and
+            propose a coarse-to-fine optimization method for coordinate-based models that allows for
+            more robust optimization.
+            By adapting principles from geometry processing and physical simulation to NeRF-like
+            models, we propose an elastic regularization of the deformation field that further
+            improves robustness.
+          </p>
+          <p>
+            We show that <span class="dnerf">Nerfies</span> can turn casually captured selfie
+            photos/videos into deformable NeRF
+            models that allow for photorealistic renderings of the subject from arbitrary
+            viewpoints, which we dub <i>"nerfies"</i>. We evaluate our method by collecting data
+            using a
+            rig with two mobile phones that take time-synchronized photos, yielding train/validation
+            images of the same pose at different viewpoints. We show that our method faithfully
+            reconstructs non-rigidly deforming scenes and reproduces unseen views with high
+            fidelity.
           </p>
         </div>
       </div>
     </div>
-    <!--/ Pipeline. -->
-  </div>
-</section>
+    <!--/ Abstract. -->
 
-  
-
-<section class="hero is-light is-small">
-  <div class="hero-body">
-    <div class="container">
-      <!-- 新标题：Generative Garments -->
-      <h2 class="title is-2 has-text-centered">Generation</h2> 
-
-      <h2 class="subtitle has-text-centered"><span class="dnerf">Tops</span></h2>
-      <div id="tops-carousel" class="carousel results-carousel">
-
-        <div class="item" style="display: flex; flex-direction: column; align-items: center;">
-          <video autoplay controls muted loop playsinline height="300" style="margin-bottom: 0.5rem;">
-            <source src="./static/video-text-tops/A_round_neck_beige_linen_long-sleeved_shirt_with_a_button-down_collar.mp4" type="video/mp4">
-          </video>
-          <p style="margin: 0 1rem; font-size: 1rem; color: #363636; font-family: 'Comic Sans MS', cursive; text-align: center; min-height: 3.2em;">
-            "A round neck beige linen long-sleeved shirt"
-          </p>
-        </div>
-    
-        <div class="item" style="display: flex; flex-direction: column; align-items: center;">
-          <video autoplay controls muted loop playsinline height="300" style="margin-bottom: 0.5rem;">
-            <source src="./static/video-text-tops/A_pastel_pink_cotton_garment.mp4" type="video/mp4">
-          </video>
-          <p style="margin: 0 1rem; font-size: 1rem; color: #363636; font-family: 'Comic Sans MS', cursive; text-align: center; min-height: 3.2em;">
-            "A pastel pink cotton garment"
-          </p>
-        </div>
-    
-        <div class="item" style="display: flex; flex-direction: column; align-items: center;">
-          <video autoplay controls muted loop playsinline height="300" style="margin-bottom: 0.5rem;">
-            <source src="./static/video-text-tops/A_sunny_yellow_cotton_sleeveless_tank_top_with_a_scoop_neck.mp4" type="video/mp4">
-          </video>
-          <p style="margin: 0 1rem; font-size: 1rem; color: #363636; font-family: 'Comic Sans MS', cursive; text-align: center; min-height: 3.2em;">
-            "A sunny yellow cotton sleeveless tank top with a scoop neck"
-          </p>
-        </div>
-    
-        <div class="item" style="display: flex; flex-direction: column; align-items: center;">
-          <video autoplay controls muted loop playsinline height="300" style="margin-bottom: 0.5rem;">
-            <source src="./static/video-text-tops/A_green_hoodie.mp4" type="video/mp4">
-          </video>
-          <p style="margin: 0 1rem; font-size: 1rem; color: #363636; font-family: 'Comic Sans MS', cursive; text-align: center; min-height: 3.2em;">
-            "A green hoodie"
-          </p>
-        </div>
-    
-        <div class="item" style="display: flex; flex-direction: column; align-items: center;">
-          <video autoplay controls muted loop playsinline height="300" style="margin-bottom: 0.5rem;">
-            <source src="./static/video-text-tops/A_baby_blue_long-sleeved_shirt_with_a_button-down_collar.mp4" type="video/mp4">
-          </video>
-          <p style="margin: 0 1rem; font-size: 1rem; color: #363636; font-family: 'Comic Sans MS', cursive; text-align: center; min-height: 3.2em;">
-            "A baby blue long-sleeved shirt with a button-down collar"
-          </p>
-        </div>
-    
-        <div class="item" style="display: flex; flex-direction: column; align-items: center;">
-          <video autoplay controls muted loop playsinline height="300" style="margin-bottom: 0.5rem;">
-            <source src="./static/video-text-tops/A_honey_yellow_cotton_short-sleeved_henley_shirt.mp4" type="video/mp4">
-          </video>
-          <p style="margin: 0 1rem; font-size: 1rem; color: #363636; font-family: 'Comic Sans MS', cursive; text-align: center; min-height: 3.2em;">
-            "A honey yellow cotton short-sleeved henley shirt"
-          </p>
-        </div>
-    
-        <div class="item" style="display: flex; flex-direction: column; align-items: center;">
-          <video autoplay controls muted loop playsinline height="300" style="margin-bottom: 0.5rem;">
-            <source src="./static/video-text-tops/A_pastel_pink_garment_with_puff_sleeves.mp4" type="video/mp4">
-          </video>
-          <p style="margin: 0 1rem; font-size: 1rem; color: #363636; font-family: 'Comic Sans MS', cursive; text-align: center; min-height: 3.2em;">
-            "A pastel pink garment with puff sleeves"
-          </p>
-        </div>
-    
-        <div class="item" style="display: flex; flex-direction: column; align-items: center;">
-          <video autoplay controls muted loop playsinline height="300" style="margin-bottom: 0.5rem;">
-            <source src="./static/video-text-tops/A_green_sweater.mp4" type="video/mp4">
-          </video>
-          <p style="margin: 0 1rem; font-size: 1rem; color: #363636; font-family: 'Comic Sans MS', cursive; text-align: center; min-height: 3.2em;">
-            "A green striped sweater"
-          </p>
-        </div>
-    
-        <div class="item" style="display: flex; flex-direction: column; align-items: center;">
-          <video autoplay controls muted loop playsinline height="300" style="margin-bottom: 0.5rem;">
-            <source src="./static/video-text-tops/A_royal_blue_silk_vest_with_a_beaded_neckline.mp4" type="video/mp4">
-          </video>
-          <p style="margin: 0 1rem; font-size: 1rem; color: #363636; font-family: 'Comic Sans MS', cursive; text-align: center; min-height: 3.2em;">
-            "A royal blue silk vest with a beaded neckline"
-          </p>
-        </div>
-  
-        <div class="item" style="display: flex; flex-direction: column; align-items: center;">
-          <video autoplay controls muted loop playsinline height="300" style="margin-bottom: 0.5rem;">
-            <source src="./static/video-text-tops/A_yellow_hoodie.mp4" type="video/mp4">
-          </video>
-          <p style="margin: 0 1rem; font-size: 1rem; color: #363636; font-family: 'Comic Sans MS', cursive; text-align: center; min-height: 3.2em;">
-            "A yellow hoodie"
-          </p>
-        </div>
-        
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="hero is-light is-small">
-  <div class="hero-body">
-    <div class="container">
-      <h2 class="subtitle has-text-centered"><span class="dnerf">Bottoms</span></h2>
-      <div id="bottoms-carousel" class="carousel results-carousel">
-        
-        <div class="item" style="display: flex; flex-direction: column; align-items: center;">
-          <video autoplay controls muted loop playsinline height="300" style="margin-bottom: 0.5rem;">
-            <source src="./static/video-text-bottoms/a_blue_puffy_skirt.mp4" type="video/mp4">
-          </video>
-          <p style="margin: 0 1rem; font-size: 1rem; color: #363636; font-family: 'Comic Sans MS', cursive; text-align: center; min-height: 3.2em;">
-            "A pastel purple puffy skirt"
-          </p>
-        </div>
-        <div class="item" style="display: flex; flex-direction: column; align-items: center;">
-          <video autoplay controls muted loop playsinline height="300" style="margin-bottom: 0.5rem;">
-            <source src="./static/video-text-bottoms/Light_pink_satin_pants.mp4" type="video/mp4">
-          </video>
-          <p style="margin: 0 1rem; font-size: 1rem; color: #363636; font-family: 'Comic Sans MS', cursive; text-align: center; min-height: 3.2em;">
-            "A pair of light pink satin pants"
-          </p>
-        </div>
-        <div class="item" style="display: flex; flex-direction: column; align-items: center;">
-          <video autoplay controls muted loop playsinline height="300" style="margin-bottom: 0.5rem;">
-            <source src="./static/video-text-bottoms/an_orange_short_pants.mp4" type="video/mp4">
-          </video>
-          <p style="margin: 0 1rem; font-size: 1rem; color: #363636; font-family: 'Comic Sans MS', cursive; text-align: center; min-height: 3.2em;">
-            "A pair of orange short pants"
-          </p>
-        </div>
-        <div class="item" style="display: flex; flex-direction: column; align-items: center;">
-          <video autoplay controls muted loop playsinline height="300" style="margin-bottom: 0.5rem;">
-            <source src="./static/video-text-bottoms/A_blue_jeans.mp4" type="video/mp4">
-          </video>
-          <p style="margin: 0 1rem; font-size: 1rem; color: #363636; font-family: 'Comic Sans MS', cursive; text-align: center; min-height: 3.2em;">
-            "A pair of blue jeans"
-          </p>
-        </div>
-
-        <div class="item" style="display: flex; flex-direction: column; align-items: center;">
-          <video autoplay controls muted loop playsinline height="300" style="margin-bottom: 0.5rem;">
-            <source src="./static/video-text-bottoms/A_pair_of_black_straight-leg_suit_trousers.mp4" type="video/mp4">
-          </video>
-          <p style="margin: 0 1rem; font-size: 1rem; color: #363636; font-family: 'Comic Sans MS', cursive; text-align: center; min-height: 3.2em;">
-            "A pair of light mauve straight-leg suit trousers"
-          </p>
-        </div>
-        <div class="item" style="display: flex; flex-direction: column; align-items: center;">
-          <video autoplay controls muted loop playsinline height="300" style="margin-bottom: 0.5rem;">
-            <source src="./static/video-text-bottoms/A_short_blue_jeans.mp4" type="video/mp4">
-          </video>
-          <p style="margin: 0 1rem; font-size: 1rem; color: #363636; font-family: 'Comic Sans MS', cursive; text-align: center; min-height: 3.2em;">
-            "A pair of vibrant purple denim shorts with yellow trim"
-          </p>
-        </div>
-        <div class="item" style="display: flex; flex-direction: column; align-items: center;">
-          <video autoplay controls muted loop playsinline height="300" style="margin-bottom: 0.5rem;">
-            <source src="./static/video-text-bottoms/a_pink_short_skirt.mp4" type="video/mp4">
-          </video>
-          <p style="margin: 0 1rem; font-size: 1rem; color: #363636; font-family: 'Comic Sans MS', cursive; text-align: center; min-height: 3.2em;">
-            "A pink bodycon short skirt"
-          </p>
-        </div>
-        <div class="item" style="display: flex; flex-direction: column; align-items: center;">
-          <video autoplay controls muted loop playsinline height="300" style="margin-bottom: 0.5rem;">
-            <source src="./static/video-text-bottoms/A_pair_of_brown_straight-leg_suit_trousers.mp4" type="video/mp4">
-          </video>
-          <p style="margin: 0 1rem; font-size: 1rem; color: #363636; font-family: 'Comic Sans MS', cursive; text-align: center; min-height: 3.2em;">
-            "A pair of brown straight-leg suit trousers"
-          </p>
-        </div>
-        <div class="item" style="display: flex; flex-direction: column; align-items: center;">
-          <video autoplay controls muted loop playsinline height="300" style="margin-bottom: 0.5rem;">
-            <source src="./static/video-text-bottoms/rust-colored_corduroy_pants.mp4" type="video/mp4">
-          </video>
-          <p style="margin: 0 1rem; font-size: 1rem; color: #363636; font-family: 'Comic Sans MS', cursive; text-align: center; min-height: 3.2em;">
-            "A pair of rust-colored corduroy pants"
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="hero is-light is-small">
-  <div class="hero-body">
-    <div class="container">
-      <h2 class="subtitle has-text-centered"><span class="dnerf">Accessories</span></h2>
-      <div id="accessory-carousel" class="carousel results-carousel">
-        
-        <div class="item" style="display: flex; flex-direction: column; align-items: center;">
-          <video autoplay controls muted loop playsinline height="300" style="margin-bottom: 0.5rem;">
-            <source src="./static/video-text-acc/Brown_acetate-frame_hyperopia_glasses.mp4" type="video/mp4">
-          </video>
-          <p style="margin: 0 1rem; font-size: 1rem; color: #363636; font-family: 'Comic Sans MS', cursive; text-align: center; min-height: 3.2em;">
-            "Vibrant tortoiseshell pattern eyeglasses"
-          </p>
-        </div>
-        <div class="item" style="display: flex; flex-direction: column; align-items: center;">
-          <video autoplay controls muted loop playsinline height="300" style="margin-bottom: 0.5rem;">
-            <source src="./static/video-text-acc/A_red_and_white_soft_knitted_hat.mp4" type="video/mp4">
-          </video>
-          <p style="margin: 0 1rem; font-size: 1rem; color: #363636; font-family: 'Comic Sans MS', cursive; text-align: center; min-height: 3.2em;">
-            "A red and white soft knitted hat"
-          </p>
-        </div>
-        <div class="item" style="display: flex; flex-direction: column; align-items: center;">
-          <video autoplay controls muted loop playsinline height="300" style="margin-bottom: 0.5rem;">
-            <source src="./static/video-text-acc/A_gold_necklace_v2.mp4" type="video/mp4">
-          </video>
-          <p style="margin: 0 1rem; font-size: 1rem; color: #363636; font-family: 'Comic Sans MS', cursive; text-align: center; min-height: 3.2em;">
-            "A gold necklace"
-          </p>
-        </div>
-        <div class="item" style="display: flex; flex-direction: column; align-items: center;">
-          <video autoplay controls muted loop playsinline height="300" style="margin-bottom: 0.5rem;">
-            <source src="./static/video-text-acc/A_classic_black_fedora_hat_made_of_soft_felt_material.mp4" type="video/mp4">
-          </video>
-          <p style="margin: 0 1rem; font-size: 1rem; color: #363636; font-family: 'Comic Sans MS', cursive; text-align: center; min-height: 3.2em;">
-            "A classic black fedora hat made of soft felt material"
-          </p>
-        </div>
-        <div class="item" style="display: flex; flex-direction: column; align-items: center;">
-          <video autoplay controls muted loop playsinline height="300" style="margin-bottom: 0.5rem;">
-            <source src="./static/video-text-acc/A_muted_blue_cap.mp4" type="video/mp4">
-          </video>
-          <p style="margin: 0 1rem; font-size: 1rem; color: #363636; font-family: 'Comic Sans MS', cursive; text-align: center; min-height: 3.2em;">
-            "A muted blue cap"
-          </p>
-        </div>
-
-        <div class="item" style="display: flex; flex-direction: column; align-items: center;">
-          <video autoplay controls muted loop playsinline height="300" style="margin-bottom: 0.5rem;">
-            <source src="./static/video-text-acc/Gold_half-frame_presbyopia_glasses.mp4" type="video/mp4">
-          </video>
-          <p style="margin: 0 1rem; font-size: 1rem; color: #363636; font-family: 'Comic Sans MS', cursive; text-align: center; min-height: 3.2em;">
-            "Gold half-frame presbyopia glasses"
-          </p>
-        </div>
-        <div class="item" style="display: flex; flex-direction: column; align-items: center;">
-          <video autoplay controls muted loop playsinline height="300" style="margin-bottom: 0.5rem;">
-            <source src="./static/video-text-acc/A_structured_camel-colored_trilby_hat_made_of_premium_wool_felt.mp4" type="video/mp4">
-          </video>
-          <p style="margin: 0 1rem; font-size: 1rem; color: #363636; font-family: 'Comic Sans MS', cursive; text-align: center; min-height: 3.2em;">
-            "A structured camel-colored trilby hat made of premium wool felt"
-          </p>
-        </div>
-        <div class="item" style="display: flex; flex-direction: column; align-items: center;">
-          <video autoplay controls muted loop playsinline height="300" style="margin-bottom: 0.5rem;">
-            <source src="./static/video-text-acc/a_cute_light_purple_cap.mp4" type="video/mp4">
-          </video>
-          <p style="margin: 0 1rem; font-size: 1rem; color: #363636; font-family: 'Comic Sans MS', cursive; text-align: center; min-height: 3.2em;">
-            "A cute light purple cap"
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="hero is-light is-small">
-  <div class="hero-body">
-    <div class="container">
-      <h2 class="subtitle has-text-centered"><span class="dnerf">Shoes/Socks</span></h2>
-      <div id="shoe-carousel" class="carousel results-carousel">
-          <div class="item" style="display: flex; flex-direction: column; align-items: center;">
-          <video autoplay controls muted loop playsinline height="300" style="margin-bottom: 0.5rem;">
-            <source src="./static/video-text-shoe/turquoise_tennis_sneakers.mp4" type="video/mp4">
-          </video>
-          <p style="margin: 0 1rem; font-size: 1rem; color: #363636; font-family: 'Comic Sans MS', cursive; text-align: center; min-height: 3.2em;">
-            "A turquoise tennis sneaker"
-          </p>
-        </div>
-        
-        <div class="item" style="display: flex; flex-direction: column; align-items: center;">
-          <video autoplay controls muted loop playsinline height="300" style="margin-bottom: 0.5rem;">
-            <source src="./static/video-text-shoe/a_yellow_sock.mp4" type="video/mp4">
-          </video>
-          <p style="margin: 0 1rem; font-size: 1rem; color: #363636; font-family: 'Comic Sans MS', cursive; text-align: center; min-height: 3.2em;">
-            "A yellow sock"
-          </p>
-        </div>
-        
-        <div class="item" style="display: flex; flex-direction: column; align-items: center;">
-          <video autoplay controls muted loop playsinline height="300" style="margin-bottom: 0.5rem;">
-            <source src="./static/video-text-shoe/a_brown_woman_boot.mp4" type="video/mp4">
-          </video>
-          <p style="margin: 0 1rem; font-size: 1rem; color: #363636; font-family: 'Comic Sans MS', cursive; text-align: center; min-height: 3.2em;">
-            "An elegant brown leather ankle boot"
-          </p>
-        </div>
-
-        
-        <div class="item" style="display: flex; flex-direction: column; align-items: center;">
-          <video autoplay controls muted loop playsinline height="300" style="margin-bottom: 0.5rem;">
-            <source src="./static/video-text-shoe/forest_green_trail_running_sneakers.mp4" type="video/mp4">
-          </video>
-          <p style="margin: 0 1rem; font-size: 1rem; color: #363636; font-family: 'Comic Sans MS', cursive; text-align: center; min-height: 3.2em;">
-            "A forest green trail running sneaker"
-          </p>
-        </div>
-                
-        <div class="item" style="display: flex; flex-direction: column; align-items: center;">
-          <video autoplay controls muted loop playsinline height="300" style="margin-bottom: 0.5rem;">
-            <source src="./static/video-text-shoe/Cool_grey_high-top_sneaker.mp4" type="video/mp4">
-          </video>
-          <p style="margin: 0 1rem; font-size: 1rem; color: #363636; font-family: 'Comic Sans MS', cursive; text-align: center; min-height: 3.2em;">
-            "A cool grey high-top sneaker"
-          </p>
-        </div>
-
-        <div class="item" style="display: flex; flex-direction: column; align-items: center;">
-          <video autoplay controls muted loop playsinline height="300" style="margin-bottom: 0.5rem;">
-            <source src="./static/video-text-shoe/vibrant_red_sandals.mp4" type="video/mp4">
-          </video>
-          <p style="margin: 0 1rem; font-size: 1rem; color: #363636; font-family: 'Comic Sans MS', cursive; text-align: center; min-height: 3.2em;">
-            "A vibrant red slip-on sandal"
-          </p>
-        </div>
-        
-        
-        <div class="item" style="display: flex; flex-direction: column; align-items: center;">
-          <video autoplay controls muted loop playsinline height="300" style="margin-bottom: 0.5rem;">
-            <source src="./static/video-text-shoe/Chic_silver_metallic_slip-on_sneakers.mp4" type="video/mp4">
-          </video>
-          <p style="margin: 0 1rem; font-size: 1rem; color: #363636; font-family: 'Comic Sans MS', cursive; text-align: center; min-height: 3.2em;">
-            "Chic silver metallic sneaker"
-          </p>
-        </div>
-
-        <div class="item" style="display: flex; flex-direction: column; align-items: center;">
-          <video autoplay controls muted loop playsinline height="300" style="margin-bottom: 0.5rem;">
-            <source src="./static/video-text-shoe/bright_blue_and_green_soccer_sneakers.mp4" type="video/mp4">
-          </video>
-          <p style="margin: 0 1rem; font-size: 1rem; color: #363636; font-family: 'Comic Sans MS', cursive; text-align: center; min-height: 3.2em;">
-            "A bright blue and green soccer sneaker"
-          </p>
-        </div>
-
-        
-        <div class="item" style="display: flex; flex-direction: column; align-items: center;">
-          <video autoplay controls muted loop playsinline height="300" style="margin-bottom: 0.5rem;">
-            <source src="./static/video-text-shoe/Vintage-inspired_brown_suede_oxford_shoes.mp4" type="video/mp4">
-          </video>
-          <p style="margin: 0 1rem; font-size: 1rem; color: #363636; font-family: 'Comic Sans MS', cursive; text-align: center; min-height: 3.2em;">
-            "Vintage-inspired brown suede oxford shoes"
-          </p>
-        </div>
-        
-        <div class="item" style="display: flex; flex-direction: column; align-items: center;">
-          <video autoplay controls muted loop playsinline height="300" style="margin-bottom: 0.5rem;">
-            <source src="./static/video-text-shoe/classic_white_canvas_sneaker.mp4" type="video/mp4">
-          </video>
-          <p style="margin: 0 1rem; font-size: 1rem; color: #363636; font-family: 'Comic Sans MS', cursive; text-align: center; min-height: 3.2em;">
-            "Classic white canvas sneaker"
-          </p>
-        </div>
-        
-        <div class="item" style="display: flex; flex-direction: column; align-items: center;">
-          <video autoplay controls muted loop playsinline height="300" style="margin-bottom: 0.5rem;">
-            <source src="./static/video-text-shoe/deep_red_leather_loafers.mp4" type="video/mp4">
-          </video>
-          <p style="margin: 0 1rem; font-size: 1rem; color: #363636; font-family: 'Comic Sans MS', cursive; text-align: center; min-height: 3.2em;">
-            "A red leather loafer"
-          </p>
-        </div>
-        
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="hero is-light is-small">
-  <div class="hero-body">
-    <div class="container">
-      <!-- Section Title -->
-      <h2 class="title is-2 has-text-centered">Editing</h2>
-
-      <!-- 第1行：两组 -->
-      <div class="group-row" style="display: flex; justify-content: space-between; gap: 40px; flex-wrap: nowrap; margin-bottom: 40px;">
-        
-        <!-- 第1组 -->
-        <div class="video-group" style="display: flex; flex-direction: column; align-items: center; gap: 10px; flex: 1;">
-          <div class="edit-text" style="font-size: 1.2rem; font-weight: bold;">Pants Length</div>
-          <div class="video-item" style="display: flex; align-items: center; gap: 10px;">
-            <div>
-              <video autoplay controls muted loop playsinline width="250" height="250">
-                <source src="./static/video-text-bottoms/Light_pink_satin_pants.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-              </video>
-              <p class="caption" style="text-align: center;">Long Pants</p>
-            </div>
-            <div class="arrow" style="font-size: 4rem; font-weight: bold; transform: scaleX(0.5); margin: 5px;">&#8594;</div>
-            <div>
-              <video autoplay controls muted loop playsinline width="250" height="250">
-                <source src="./static/video-edit/1_1_PantsLength/edited.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-              </video>
-              <p class="caption" style="text-align: center;">Short Pants</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- 第2组 -->
-        <div class="video-group" style="display: flex; flex-direction: column; align-items: center; gap: 10px; flex: 1;">
-          <div class="edit-text" style="font-size: 1.2rem; font-weight: bold;">Shape</div>
-          <div class="video-item" style="display: flex; align-items: center; gap: 10px;">
-            <div>
-              <video autoplay controls muted loop playsinline width="250" height="250">
-                <source src="./static/video-edit/1_2_Shape/unedit.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-              </video>
-              <p class="caption" style="text-align: center;">Standard</p>
-            </div>
-            <div class="arrow" style="font-size: 4rem; font-weight: bold; transform: scaleX(0.5); margin: 5px;">&#8594;</div>
-            <div>
-              <video autoplay controls muted loop playsinline width="250" height="250">
-                <source src="./static/video-edit/1_2_Shape/edited.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-              </video>
-              <p class="caption" style="text-align: center;">Fat</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- 第2行：两组 -->
-      <div class="group-row" style="display: flex; justify-content: space-between; gap: 40px; flex-wrap: nowrap; margin-bottom: 40px;">
-        
-        <!-- 第3组 -->
-        <div class="video-group" style="display: flex; flex-direction: column; align-items: center; gap: 10px; flex: 1;">
-          <div class="edit-text" style="font-size: 1.2rem; font-weight: bold;">Overall Texture</div>
-          <div class="video-item" style="display: flex; align-items: center; gap: 10px;">
-            <div>
-              <video autoplay controls muted loop playsinline width="250" height="250">
-                <source src="./static/video-edit/2_1_OverallTexture/unedit.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-              </video>
-              <p class="caption" style="text-align: center;">Black</p>
-            </div>
-            <div class="arrow" style="font-size: 4rem; font-weight: bold; transform: scaleX(0.5); margin: 5px;">&#8594;</div>
-            <div>
-              <video autoplay controls muted loop playsinline width="250" height="250">
-                <source src="./static/video-edit/2_1_OverallTexture/edited.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-              </video>
-              <p class="caption" style="text-align: center;">Plaid</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- 第4组 -->
-        <div class="video-group" style="display: flex; flex-direction: column; align-items: center; gap: 10px; flex: 1;">
-          <div class="edit-text" style="font-size: 1.2rem; font-weight: bold;">Local Pattern</div>
-          <div class="video-item" style="display: flex; align-items: center; gap: 10px;">
-            <div>
-              <video autoplay controls muted loop playsinline width="250" height="250">
-                <source src="./static/video-edit/2_2_LocalPattern/unedit.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-              </video>
-              <p class="caption" style="text-align: center;">No Chest Pattern</p>
-            </div>
-            <div class="arrow" style="font-size: 4rem; font-weight: bold; transform: scaleX(0.5); margin: 5px;">&#8594;</div>
-            <div>
-              <video autoplay controls muted loop playsinline width="250" height="250">
-                <source src="./static/video-edit/2_2_LocalPattern/edited.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-              </video>
-              <p class="caption" style="text-align: center;">Red Heart Chest Pattern</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- 第3行：两组 -->
-      <div class="group-row" style="display: flex; justify-content: space-between; gap: 40px; flex-wrap: nowrap;">
-        
-        <!-- 第5组 -->
-        <div class="video-group" style="display: flex; flex-direction: column; align-items: center; gap: 10px; flex: 1;">
-          <div class="edit-text" style="font-size: 1.2rem; font-weight: bold;">Material</div>
-          <div class="video-item" style="display: flex; align-items: center; gap: 10px;">
-            <div>
-              <video autoplay controls muted loop playsinline width="250" height="250">
-                <source src="./static/video-edit/3_1_Material/unedit.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-              </video>
-              <p class="caption" style="text-align: center;">Cotton</p>
-            </div>
-            <div class="arrow" style="font-size: 4rem; font-weight: bold; transform: scaleX(0.5); margin: 5px;">&#8594;</div>
-            <div>
-              <video autoplay controls muted loop playsinline width="250" height="250">
-                <source src="./static/video-edit/3_1_Material/edited.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-              </video>
-              <p class="caption" style="text-align: center;">Silk</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- 第6组 -->
-        <div class="video-group" style="display: flex; flex-direction: column; align-items: center; gap: 10px; flex: 1;">
-          <div class="edit-text" style="font-size: 1.2rem; font-weight: bold;">Geometry</div>
-          <div class="video-item" style="display: flex; align-items: center; gap: 10px;">
-            <div>
-              <video autoplay controls muted loop playsinline width="250" height="250">
-                <source src="./static/video-edit/3_2_Geometry/unedit.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-              </video>
-              <p class="caption" style="text-align: center;">Round Neck</p>
-            </div>
-            <div class="arrow" style="font-size: 4rem; font-weight: bold; transform: scaleX(0.5); margin: 5px;">&#8594;</div>
-            <div>
-              <video autoplay controls muted loop playsinline width="250" height="250">
-                <source src="./static/video-edit/3_2_Geometry/edited.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-              </video>
-              <p class="caption" style="text-align: center;">V Neck</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="hero is-light is-small">
-  <div class="hero-body">
-    <div class="container">
-      <h2 class="title is-2 has-text-centered">Animation</h2>
-      <div id="video-carousel" class="carousel results-carousel">
-        <div class="item" style="display: flex; flex-direction: column; align-items: center;">
-          <video autoplay controls muted loop playsinline height="300" style="margin-bottom: 0.5rem;">
-            <source src="./static/video-animation/dancing_demo.mp4" type="video/mp4">
-          </video>
-          <p style="margin: 0 1rem; font-size: 1rem; color: #363636; font-family: 'Arial', cursive; text-align: center; min-height: 3.2em;">
-            Dancing
-          </p>
-        </div>
-        <div class="item" style="display: flex; flex-direction: column; align-items: center;">
-          <video autoplay controls muted loop playsinline height="300" style="margin-bottom: 0.5rem;">
-            <source src="./static/video-animation/talking_demo.mp4" type="video/mp4">
-          </video>
-          <p style="margin: 0 1rem; font-size: 1rem; color: #363636; font-family: 'Arial', cursive; text-align: center; min-height: 3.2em;">
-            Talking
-          </p>
-        </div>
-        <div class="item" style="display: flex; flex-direction: column; align-items: center;">
-          <video autoplay controls muted loop playsinline height="300" style="margin-bottom: 0.5rem;">
-            <source src="./static/video-animation/3dview_1.mp4" type="video/mp4">
-          </video>
-          <p style="margin: 0 1rem; font-size: 1rem; color: #363636; font-family: 'Arial', cursive; text-align: center; min-height: 3.2em;">
-            3D View 1
-          </p>
-        </div>
-        <div class="item" style="display: flex; flex-direction: column; align-items: center;">
-          <video autoplay controls muted loop playsinline height="300" style="margin-bottom: 0.5rem;">
-            <source src="./static/video-animation/3dview_2.mp4" type="video/mp4">
-          </video>
-          <p style="margin: 0 1rem; font-size: 1rem; color: #363636; font-family: 'Arial', cursive; text-align: center; min-height: 3.2em;">
-            3D View 2
-          </p>
-        </div>
-
-      </div>
-    </div>
-  </div>
-</section>
-  
-<section class="section">
-  <div class="container is-max-desktop">
     <!-- Paper video. -->
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
-        <h2 class="title is-3">Video Demo</h2>
+        <h2 class="title is-3">Video</h2>
         <div class="publication-video">
-          <video controls>
-            <source src="./static/video/video_demo.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
+          <iframe src="https://www.youtube.com/embed/MrKrnHhk8IA?rel=0&amp;showinfo=0"
+                  frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
         </div>
       </div>
     </div>
@@ -701,6 +303,155 @@
   </div>
 </section>
 
+
+<section class="section">
+  <div class="container is-max-desktop">
+
+    <div class="columns is-centered">
+
+      <!-- Visual Effects. -->
+      <div class="column">
+        <div class="content">
+          <h2 class="title is-3">Visual Effects</h2>
+          <p>
+            Using <i>nerfies</i> you can create fun visual effects. This Dolly zoom effect
+            would be impossible without nerfies since it would require going through a wall.
+          </p>
+          <video id="dollyzoom" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/dollyzoom-stacked.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+      <!--/ Visual Effects. -->
+
+      <!-- Matting. -->
+      <div class="column">
+        <h2 class="title is-3">Matting</h2>
+        <div class="columns is-centered">
+          <div class="column content">
+            <p>
+              As a byproduct of our method, we can also solve the matting problem by ignoring
+              samples that fall outside of a bounding box during rendering.
+            </p>
+            <video id="matting-video" controls playsinline height="100%">
+              <source src="./static/videos/matting.mp4"
+                      type="video/mp4">
+            </video>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <!--/ Matting. -->
+
+    <!-- Animation. -->
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Animation</h2>
+
+        <!-- Interpolating. -->
+        <h3 class="title is-4">Interpolating states</h3>
+        <div class="content has-text-justified">
+          <p>
+            We can also animate the scene by interpolating the deformation latent codes of two input
+            frames. Use the slider here to linearly interpolate between the left frame and the right
+            frame.
+          </p>
+        </div>
+        <div class="columns is-vcentered interpolation-panel">
+          <div class="column is-3 has-text-centered">
+            <img src="./static/images/interpolate_start.jpg"
+                 class="interpolation-image"
+                 alt="Interpolate start reference image."/>
+            <p>Start Frame</p>
+          </div>
+          <div class="column interpolation-video-column">
+            <div id="interpolation-image-wrapper">
+              Loading...
+            </div>
+            <input class="slider is-fullwidth is-large is-info"
+                   id="interpolation-slider"
+                   step="1" min="0" max="100" value="0" type="range">
+          </div>
+          <div class="column is-3 has-text-centered">
+            <img src="./static/images/interpolate_end.jpg"
+                 class="interpolation-image"
+                 alt="Interpolation end reference image."/>
+            <p class="is-bold">End Frame</p>
+          </div>
+        </div>
+        <br/>
+        <!--/ Interpolating. -->
+
+        <!-- Re-rendering. -->
+        <h3 class="title is-4">Re-rendering the input video</h3>
+        <div class="content has-text-justified">
+          <p>
+            Using <span class="dnerf">Nerfies</span>, you can re-render a video from a novel
+            viewpoint such as a stabilized camera by playing back the training deformations.
+          </p>
+        </div>
+        <div class="content has-text-centered">
+          <video id="replay-video"
+                 controls
+                 muted
+                 preload
+                 playsinline
+                 width="75%">
+            <source src="./static/videos/replay.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <!--/ Re-rendering. -->
+
+      </div>
+    </div>
+    <!--/ Animation. -->
+
+
+    <!-- Concurrent Work. -->
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Related Links</h2>
+
+        <div class="content has-text-justified">
+          <p>
+            There's a lot of excellent work that was introduced around the same time as ours.
+          </p>
+          <p>
+            <a href="https://arxiv.org/abs/2104.09125">Progressive Encoding for Neural Optimization</a> introduces an idea similar to our windowed position encoding for coarse-to-fine optimization.
+          </p>
+          <p>
+            <a href="https://www.albertpumarola.com/research/D-NeRF/index.html">D-NeRF</a> and <a href="https://gvv.mpi-inf.mpg.de/projects/nonrigid_nerf/">NR-NeRF</a>
+            both use deformation fields to model non-rigid scenes.
+          </p>
+          <p>
+            Some works model videos with a NeRF by directly modulating the density, such as <a href="https://video-nerf.github.io/">Video-NeRF</a>, <a href="https://www.cs.cornell.edu/~zl548/NSFF/">NSFF</a>, and <a href="https://neural-3d-video.github.io/">DyNeRF</a>
+          </p>
+          <p>
+            There are probably many more by the time you are reading this. Check out <a href="https://dellaert.github.io/NeRF/">Frank Dellart's survey on recent NeRF papers</a>, and <a href="https://github.com/yenchenlin/awesome-NeRF">Yen-Chen Lin's curated list of NeRF papers</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Concurrent Work. -->
+
+  </div>
+</section>
+
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@article{park2021nerfies,
+  author    = {Park, Keunhong and Sinha, Utkarsh and Barron, Jonathan T. and Bouaziz, Sofien and Goldman, Dan B and Seitz, Steven M. and Martin-Brualla, Ricardo},
+  title     = {Nerfies: Deformable Neural Radiance Fields},
+  journal   = {ICCV},
+  year      = {2021},
+}</code></pre>
+  </div>
+</section>
 
 
 <footer class="footer">
@@ -734,7 +485,6 @@
     </div>
   </div>
 </footer>
-
 
 </body>
 </html>
